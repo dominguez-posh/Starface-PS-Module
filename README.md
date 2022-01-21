@@ -1,4 +1,4 @@
-# Starface Powershell API
+# Starface Powershell Module
 A Set of Cmdlets calling the Starface API with Powershell
 
 
