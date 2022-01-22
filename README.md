@@ -17,21 +17,40 @@ To Import the Scripts, you need to download the starface-api.psm1 file and run i
 
 to connect to a Starface Instance you need to create a login-session. The session has a retention time of 4 hours.
 
-to start the session run 
- ### Start-InitStarfaceAPI -login
-you will be asked for a Starface FQDN and User Creds.
-  Use -StarfaceFQDN and -Creds to start initialing silently
-Saving creds is possible with -SaveCreds
+ 
+```PowerShell
+#to start a new session run 
 
-When the session is retend, re-connect with Start-InitStarfaceAPI
-  
-To log out and delete any saved creds run start-initstarfaceAPI -logout
+Start-InitStarfaceAPI -login
+
+# Saving Creds can be done with
+
+Start-InitStarfaceAPI -login -SaveCreds
+
+#Login Silently with
+
+Start-InitStarfaceAPI -login -StarfaceFQDN <starface.contoso.com> -Creds <PS-Cred-Obj> 
+
+#When session is retent, you can use the command to generate a new 4h session
+
+Start-InitStarfaceAPI
+
+#To Log out the session use
+
+start-initstarfaceAPI -logout
+
+
+```
   
 ## Generic API-Call
   
 Not every function ist coded in a CMDlet, so you can use the generic API-Call CMDlet
   
-### Start-StarfaceAPICall -type -type -call call -body body(JSON)
+```powershell
+
+Start-StarfaceAPICall -type <type> -call <call> -body <(json)body>
+
+```
  
 You can Use all API-Calls wich are documented in the Starface-Doku
 https://knowledge.starface.de/download/attachments/46568050/STARFACE%20Rest%20V6_6_0_X.yaml?version=1&modificationDate=1589441304946&api=v2
@@ -39,34 +58,58 @@ https://knowledge.starface.de/download/attachments/46568050/STARFACE%20Rest%20V6
 The calls are implemented in the intellisense, so you can tab out the Calls.
   
 ## Implemented Commands
-  
-### Get-StarfaceUser ((userID))
-if you dont give a userID you will get all Configured Starface User
-If you give a userID you'll get a specific User.
+
+```powershell
+#If you give a userID you'll get a specific User.
+Get-StarfaceUser -userID <UserID>
+
+
+#if you dont give a userID you will get all Configured Starface User
+Get-StarfaceUser 
+
+```
 
 You can pipe the Command to the other ones
-  
-### Set-StarfaceUser (userID) ((login),(firstName),(familyName) etc.)
-You can change one or more properties of a specific user.
-For example you want to change the FAX-Header of all users run
-  
+
+```powershell
+Set-StarfaceUser (userID) ((login),(firstName),(familyName) etc.)
+
+#You can change one or more properties of a specific user.
+#For example you want to change the FAX-Header of all users run
+
 Get-StarfaceUser | Set-Starfaceuser -FaxHeader "Contosoo Inc."
+```
 
-### Add-StarfaceUser (FamilyName),(Firstname),(email) ((FaxHeader),etc,)
-Adds a new User with given information
+```powershell
+Add-StarfaceUser (FamilyName),(Firstname),(email) ((FaxHeader),etc,)
+#Adds a new User with given information
+```
 
-  
-### Remove-StarfaceUser (UserID)
-Removes a User. Can be piped like:
+
+
+```powershell
+Remove-StarfaceUser (UserID)
+
+#Removes a User. Can be piped like:
 Get-StarfaceUser | ? -familyName -eq "Smith"| Remove-StarfaceUser
- 
+
+```  
+
+
+```powershell
 ### Get-StarfaceUserPermission ((UserID))
+``` 
+
 Get the permissions of a specific User.
 Can be piped.
- 
-### Set-StarfaceUserPermission -userID ((SetAdmin),(SetDefault))
-You can set the permission of a specific user to default or grant a admin-user
-for example:
+```powershell
+Set-StarfaceUserPermission -userID ((SetAdmin),(SetDefault))
+# You can set the permission of a specific user to default or grant a admin-user like
+
 StarfaceUserPermission -userID 1001 -SetDefault
+```
+
+
+
 
   
