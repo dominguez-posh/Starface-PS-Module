@@ -11,7 +11,13 @@ The script does NOT work on Server 2012R2 with factory installed Powershell ( I 
 
 ## Installation and initialization
 
-To Import the Scripts, you need to download the starface-api.psm1 file and run import-module (pathtofile)\starface-api.psm1
+To Import the Scripts, you need to download the starface-api.psm1 file and run 
+
+```powershell
+
+import-module <pathtofile>\starface-api.psm1
+
+```
 
 ## Connect to Starface-Instance
 
