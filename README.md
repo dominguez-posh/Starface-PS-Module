@@ -118,11 +118,11 @@ Setting the permissions of a specific User to Admin or to default.
 Set-StarfaceUserPermission -userID ((SetAdmin),(SetDefault))
 # You can set the permission of a specific user to default or grant a admin-user like
 
-StarfaceUserPermission -userID <UserID> -SetDefault
+Set-StarfaceUserPermission -userID <UserID> -SetDefault
 
 #Giving User Admin Rights
 
-StarfaceUserPermission -userID <UserID> -SetAdmin
+Set-StarfaceUserPermission -userID <UserID> -SetAdmin
 
 
 ```
