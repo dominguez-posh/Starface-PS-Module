@@ -65,6 +65,7 @@ The calls are implemented in the intellisense, so you can tab out the Calls.
   
 ## Implemented Commands
 
+Get one ore more Starface User
 ```powershell
 #If you give a userID you'll get a specific User.
 Get-StarfaceUser -userID <UserID>
@@ -75,7 +76,7 @@ Get-StarfaceUser
 
 ```
 
-You can pipe the Command to the other ones
+Setting a property of one or more user with or without pipe
 
 ```powershell
 Set-StarfaceUser (userID) ((login),(firstName),(familyName) etc.)
@@ -85,13 +86,12 @@ Set-StarfaceUser (userID) ((login),(firstName),(familyName) etc.)
 
 Get-StarfaceUser | Set-Starfaceuser -FaxHeader "Contosoo Inc."
 ```
-
+Adding a new Starface User
 ```powershell
 Add-StarfaceUser (FamilyName),(Firstname),(email) ((FaxHeader),etc,)
 #Adds a new User with given information
 ```
-
-
+Removing a  specific user with or without pipe
 
 ```powershell
 Remove-StarfaceUser (UserID)
@@ -101,18 +101,30 @@ Get-StarfaceUser | ? -familyName -eq "Smith"| Remove-StarfaceUser
 
 ```  
 
-
+Getting Permissions of a specific User
 ```powershell
-### Get-StarfaceUserPermission ((UserID))
+
+Get-StarfaceUserPermission ((UserID))
+
+#can also be piped like:
+
+Get-StarfaceUser -UserID 1000 | Get-StarfaceUserPermission 
+
 ``` 
 
-Get the permissions of a specific User.
-Can be piped.
+Setting the permissions of a specific User to Admin or to default.
+
 ```powershell
 Set-StarfaceUserPermission -userID ((SetAdmin),(SetDefault))
 # You can set the permission of a specific user to default or grant a admin-user like
 
-StarfaceUserPermission -userID 1001 -SetDefault
+StarfaceUserPermission -userID <UserID> -SetDefault
+
+#Giving User Admin Rights
+
+StarfaceUserPermission -userID <UserID> -SetAdmin
+
+
 ```
 
 
